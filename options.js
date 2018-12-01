@@ -25,7 +25,6 @@ function restore_options() {
     document.getElementById('useplugin').checked = items.usePlugin;
   });
 }
-navigator.mediaDevices.getUserMedia({ audio: true });
 document.addEventListener('DOMContentLoaded', restore_options);
 document.getElementById('save').addEventListener('click',
     save_options);

@@ -25,6 +25,9 @@ setNum();
 let btn = document.getElementById('btn');
 btn.addEventListener("click", show);
 
+let startB = document.getElementById('start_button');
+startB.addEventListener("click", startButton);
+
 d3.selectAll("#myDropdown")
     .selectAll("a")
     .data(options)
@@ -129,18 +132,17 @@ function updateCountry() {
   select_dialect.style.visibility = list[1].length == 1 ? 'hidden' : 'visible';
 }
 
-var create_email = false;
 var final_transcript = '';
 var recognizing = false;
 var ignore_onend;
 var start_timestamp;
-colsole.log('HERE');
+console.log('step1');
 if (!('webkitSpeechRecognition' in window)) {
   upgrade();
 } else {
   var recognition = new webkitSpeechRecognition();
-  recognition.continuous = true;
-  recognition.interimResults = true;
+  recognition.continuous = false;
+  recognition.interimResults = false;
   recognition.onstart = function() {
     console.log("recognition start");
     recognizing = true;
@@ -187,10 +189,6 @@ if (!('webkitSpeechRecognition' in window)) {
       range.selectNode(document.getElementById('final_span'));
       window.getSelection().addRange(range);
     }
-    if (create_email) {
-      create_email = false;
-      createEmail();
-    }
   };
   recognition.onresult = function(event) {
     console.log("recognition result");
@@ -222,37 +220,8 @@ var first_char = /\S/;
 function capitalize(s) {
   return s.replace(first_char, function(m) { return m.toUpperCase(); });
 }
-function createEmail() {
-  var n = final_transcript.indexOf('\n');
-  if (n < 0 || n >= 80) {
-    n = 40 + final_transcript.substring(40).indexOf(' ');
-  }
-  var subject = encodeURI(final_transcript.substring(0, n));
-  var body = encodeURI(final_transcript.substring(n + 1));
-  window.location.href = 'mailto:?subject=' + subject + '&body=' + body;
-}
-function copyButton() {
-  if (recognizing) {
-    recognizing = false;
-    recognition.stop();
-  }
-  copy_button.style.display = 'none';
-  copy_info.style.display = 'inline-block';
-  showInfo('');
-}
-function emailButton() {
-  if (recognizing) {
-    create_email = true;
-    recognizing = false;
-    recognition.stop();
-  } else {
-    createEmail();
-  }
-  email_button.style.display = 'none';
-  email_info.style.display = 'inline-block';
-  showInfo('');
-}
 function startButton(event) {
+    navigator.mediaDevices.getUserMedia({ audio: true });
     console.log('start button');
   if (recognizing) {
     recognition.stop();
@@ -287,10 +256,6 @@ function showButtons(style) {
     return;
   }
   current_style = style;
-  copy_button.style.display = style;
-  email_button.style.display = style;
-  copy_info.style.display = 'none';
-  email_info.style.display = 'none';
 }
 
 function handleClick(d) {
@@ -309,6 +274,7 @@ function handleClick(d) {
                 });
             }
         });
+        console.log("step2");
         startButton(event);
     }
     else if (d === correctNum) {
