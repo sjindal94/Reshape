@@ -38,7 +38,7 @@ circleDomElements.forEach((c, i) => {
                 times = [];
                 iterations += 1;
 
-                if (iterations < 5) {
+                if (iterations < 1) {
                     [d1, d2, d3].forEach((d) => {
                         d.style.width = `${d.offsetWidth * 1.3}px`;
                         d.style.height = `${d.offsetHeight * 1.3}px`;
@@ -46,6 +46,24 @@ circleDomElements.forEach((c, i) => {
                 }
                 else {
                     console.log('Final average times:', avgTimes);
+                    dummyzoom = 120;
+                    chrome.storage.sync.set({"lzoom":dummyzoom}, function() {
+                        console.log('Settings saved');
+                    });
+                    
+                    chrome.storage.sync.get({
+                        "lzoom": 0
+                      }, function(items) {
+                        console.log(items.lzoom.toString());
+                      });
+                    //document.body.style.zoom = (100+dummyzoom).toString()+"%";
+                    chrome.tabs.query({active:true}, function (result) {
+                        for (i = 0; i < result.length; i++) {    
+                            chrome.tabs.executeScript(result[i].id, {
+                                code: 'document.body.style.zoom = "'+dummyzoom+'%";'
+                            });
+                        }
+                    });
                 }
             }
         }
@@ -102,4 +120,5 @@ circleDomElements.forEach((c, i) => {
             });
         }
     });
+
 });
