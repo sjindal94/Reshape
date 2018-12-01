@@ -6,14 +6,8 @@
  "author": "Shubham Jindal",
 "browser_action": {
    "default_title": "Have a good day",
-  "default_popup": "index.html"
+  "default_popup": "test1.html"
 },
- "content_scripts": [
-   {
-     "matches": ["<all_urls>"],
-     "js": ["content_scripts.js"]
-   }
- ],
 "options_ui": {
     "page": "options.html",
     "open_in_tab": false
