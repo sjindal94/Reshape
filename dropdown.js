@@ -14,10 +14,10 @@ var origin = svg.selectAll('circle')
   //  .on("mouseover",handleMouseOver)
     //.on("mouseout",handleMouseOut);
 */
-var options = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-var correctNum = 1;
-var start;
-var delta;
+let options = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+let correctNum = 1;
+let start;
+let delta;
 
 setNum();
 
@@ -56,10 +56,9 @@ function handleClick(d) {
 window.onclick = function (event) {
     if (!event.target.matches('.dropbtn')) {
 
-        var dropdowns = document.getElementsByClassName("dropdown-content");
-        var i;
-        for (i = 0; i < dropdowns.length; i++) {
-            var openDropdown = dropdowns[i];
+        let dropdowns = document.getElementsByClassName("dropdown-content");
+        for (let i = 0; i < dropdowns.length; i++) {
+            let openDropdown = dropdowns[i];
             if (openDropdown.classList.contains('show')) {
                 openDropdown.classList.remove('show');
             }
