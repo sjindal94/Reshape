@@ -7,7 +7,7 @@ let startTime = 0;
 let times = [];
 let avgTimes = [];
 
-const average = arr => arr.reduce( ( p, c ) => p + c, 0 ) / arr.length;
+const average = arr => arr.reduce((p, c) => p + c, 0) / arr.length;
 
 let d1 = document.getElementById('d1');
 let d2 = document.getElementById('d2');
@@ -33,7 +33,7 @@ circleDomElements.forEach((c, i) => {
             if (c.id !== 'c9') {
                 startTime = (new Date).getTime();
             }
-            else{
+            else {
                 avgTimes.push(average(times));
                 times = [];
                 iterations += 1;
@@ -46,6 +46,7 @@ circleDomElements.forEach((c, i) => {
                 }
                 else {
                     console.log('Final average times:', avgTimes);
+                    window.location.href = "dropdown.html";
                 }
             }
         }
