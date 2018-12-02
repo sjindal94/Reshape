@@ -66,8 +66,8 @@ function dragEnd(e) {
     active = false;
     if (direction * (currentX + -15 - direction * distances[count] / 2) > -15) {
         direction = -1 * direction;
-        total += (Date.now - start);
-        console.log(Date.now - start);
+        total += (Date.now() - start);
+        console.log(Date.now() - start);
         count++;
         average_times.push(total / count);
         document.getElementById("text").innerText = "Average Time: " + total / count;
