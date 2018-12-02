@@ -38,7 +38,7 @@ circleDomElements.forEach((c, i) => {
                 times = [];
                 iterations += 1;
 
-                if (iterations < 1) {
+                if (iterations < 5) {
                     [d1, d2, d3].forEach((d) => {
                         d.style.width = `${d.offsetWidth * 1.3}px`;
                         d.style.height = `${d.offsetHeight * 1.3}px`;
