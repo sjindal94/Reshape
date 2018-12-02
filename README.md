@@ -22,5 +22,5 @@ Using these features, we created a voice assistant which will handle simple comm
 
 ## Sample Commands
 
-* "click <a clickable element on the webpage>"
-* "search <searchable text>"
+* "click `a clickable element on the webpage`"
+* "search `searchable text>`"
