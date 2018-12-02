@@ -28,7 +28,7 @@ function show() {
 function setNum() {
     start = Date.now();
     correctNum = getRandomInt(1, options.length + 1);
-    document.getElementById("number").innerHTML = "Select " + correctNum + ":";
+    document.getElementById("number").innerHTML = `${correctNum}`;
 }
 
 window.onclick = function (event) {
