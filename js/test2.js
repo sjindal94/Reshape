@@ -4,6 +4,7 @@ let start;
 let delta;
 let count = 0;
 let zoomLevel = 100;
+let times = [];
 
 setNum();
 
@@ -12,7 +13,7 @@ btn.addEventListener("click", show);
 
 d3.selectAll("#myDropdown")
     .selectAll("a")
-    .data(options)
+    .data(shuffle(options))
     .enter()
     .append("a")
     .attr("href", "#")
@@ -20,6 +21,11 @@ d3.selectAll("#myDropdown")
         return d
     })
     .on("click", handleClick);
+
+chrome.storage.sync.set({"test2": []}, function () {
+    console.log('Settings saved');
+});
+
 
 function show() {
     document.getElementById("myDropdown").classList.toggle("show");
@@ -50,31 +56,32 @@ function getRandomInt(min, max) {
 }
 
 function handleClick(d) {
-    let dummyzoom;
-
     if (count === 3) {
-        chrome.storage.sync.get({
-            "lzoom": 0
-        }, function (items) {
-            console.log(items.lzoom.toString());
+        chrome.storage.sync.set({"test2": times}, function () {
+            console.log('Settings saved');
         });
 
-        dummyzoom = 150;
-        chrome.tabs.query({active: true}, function (result) {
-            for (i = 0; i < result.length; i++) {
-                chrome.tabs.executeScript(result[i].id, {
-                    code: 'document.body.style.zoom = "' + dummyzoom + '%";'
-                });
-            }
-        });
-
-        window.location.href = "test3.html"
+        window.location.href = "../games/test3.html"
     }
     else if (d === correctNum) {
         count++;
         delta = Date.now() - start;
+        times.push(delta);
         document.getElementById("display").innerHTML = "" + delta / 1000 + " seconds have elapsed.";
         //PUT IN DATA STORAGE HERE!!!!!!
         setNum();
     }
+}
+
+let skipBtn = document.getElementById('skip');
+skipBtn.addEventListener("click", () => {
+    window.location.href = 'test3.html';
+});
+
+function shuffle(a) {
+    for (let i = a.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [a[i], a[j]] = [a[j], a[i]];
+    }
+    return a;
 }

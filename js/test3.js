@@ -25,7 +25,16 @@ container.addEventListener("touchmove", drag, false);
 container.addEventListener("mousedown", dragStart, false);
 container.addEventListener("mouseup", dragEnd, false);
 container.addEventListener("mousemove", drag, false);
+<<<<<<< HEAD:test3.js
 init();
+=======
+
+chrome.storage.sync.set({"test3": []}, function () {
+    console.log('Average times saved');
+});
+
+init(direction);
+>>>>>>> e636d8d7436163a6412a5cad2804fe963e887aa7:js/test3.js
 
 function init() {
     bar.style.backgroundColor = "#89b4c7";
@@ -72,10 +81,10 @@ function dragEnd(e) {
         }
         else {
             console.log(count);
-            chrome.storage.sync.set({"test3_results": average_times}, function () {
+            chrome.storage.sync.set({"test3": average_times}, function () {
                 console.log('Average times saved');
             });
-            window.location.href = 'speech.html';
+            window.location.href = 'results.html';
         }
     }
 
@@ -111,3 +120,8 @@ function drag(e) {
 function setTranslate(xPos, yPos, el) {
     el.style.transform = "translate3d(" + xPos + "px, " + yPos + "px, 0)";
 }
+
+let skipBtn = document.getElementById('skip');
+skipBtn.addEventListener("click", () => {
+    window.location.href = 'results.html';
+});
