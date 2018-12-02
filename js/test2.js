@@ -13,7 +13,7 @@ btn.addEventListener("click", show);
 
 d3.selectAll("#myDropdown")
     .selectAll("a")
-    .data(options)
+    .data(shuffle(options))
     .enter()
     .append("a")
     .attr("href", "#")
@@ -94,3 +94,11 @@ let skipBtn = document.getElementById('skip');
 skipBtn.addEventListener("click", () => {
     window.location.href = 'test3.html';
 });
+
+function shuffle(a) {
+    for (let i = a.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [a[i], a[j]] = [a[j], a[i]];
+    }
+    return a;
+}
