@@ -100,6 +100,7 @@ if (!('webkitSpeechRecognition' in window)) {
                 code: `
                     
                     var flag = false;
+                    var flagsearch = false;
                     var dispatchMouseEvent = function(target, var_args) {
                         var e = document.createEvent("MouseEvents");
                         // If you need clientX, clientY, etc., you can call
@@ -120,6 +121,18 @@ if (!('webkitSpeechRecognition' in window)) {
                             if(my_t.search("click") != -1){
                                 console.log('click');
                                 flag=true;
+                            }
+                            if(my_t.search("search") != -1){
+                                console.log('search');
+                                e = document.getElementById("twotabsearchtextbox")
+                                for( var i = 0; i < tokens.length-1; i++){ 
+                                   if ( tokens[i].toLowerCase() == 'search') {
+                                     tokens.splice(i, 1); 
+                                     break;
+                                   }
+                                }
+                                e.value = tokens.join(' ');
+                                document.querySelectorAll('input[type=submit]')[0].click();
                             }
                             if (a.textContent.toLowerCase().includes(my_t)){
                                 console.log(a);
