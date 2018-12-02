@@ -49,7 +49,7 @@ circleDomElements.forEach((c, i) => {
                     chrome.storage.sync.set({"lzoom":avgTimes}, function() {
                         console.log('Settings saved');
                     });
-                    window.location.href = "test2.html";
+                    window.location.href = "../games/test2.html";
                 }
             }
         }

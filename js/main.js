@@ -1,5 +1,5 @@
 let btn = document.getElementById('start');
 
 btn.addEventListener('click', () => {
-    window.location.href = 'test1.html';
+    window.location.href = '../games/test1.html';
 });

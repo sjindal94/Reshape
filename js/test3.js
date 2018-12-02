@@ -75,7 +75,7 @@ function dragEnd(e) {
             chrome.storage.sync.set({"test3_results": average_times}, function () {
                 console.log('Average times saved');
             });
-            window.location.href = 'speech.html';
+            window.location.href = '../speech.html';
         }
     }
 

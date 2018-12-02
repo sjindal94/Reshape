@@ -68,7 +68,7 @@ function handleClick(d) {
             }
         });
 
-        window.location.href = "test3.html"
+        window.location.href = "../games/test3.html"
     }
     else if (d === correctNum) {
         count++;
