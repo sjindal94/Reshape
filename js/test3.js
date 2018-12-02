@@ -25,16 +25,13 @@ container.addEventListener("touchmove", drag, false);
 container.addEventListener("mousedown", dragStart, false);
 container.addEventListener("mouseup", dragEnd, false);
 container.addEventListener("mousemove", drag, false);
-<<<<<<< HEAD:test3.js
-init();
-=======
+
 
 chrome.storage.sync.set({"test3": []}, function () {
     console.log('Average times saved');
 });
 
 init(direction);
->>>>>>> e636d8d7436163a6412a5cad2804fe963e887aa7:js/test3.js
 
 function init() {
     bar.style.backgroundColor = "#89b4c7";
@@ -43,7 +40,7 @@ function init() {
     xOffset = direction * -distances[0] / 2;
     yOffset = 0;
 
-    setTranslate(direction * distances[0] / 2-15, 0, bar);
+    setTranslate(direction * distances[0] / 2 - 15, 0, bar);
 }
 
 function dragStart(e) {
@@ -68,13 +65,13 @@ function dragEnd(e) {
     xOffset = -distances[0] / 2 * direction;
     setTranslate(-distances[0] / 2 * direction, 0, dragItem);
     active = false;
-    if (Math.abs(currentX)> 150 && currentX*direction>0) {
+    if (Math.abs(currentX) > 150 && currentX * direction > 0) {
         direction = -1 * direction;
         total += (Date.now() - start);
         console.log(Date.now() - start);
         count++;
         average_times.push(total / count);
-        document.getElementById("text").innerText = "Average Time: " + total / count/1000;
+        document.getElementById("text").innerText = "Average Time: " + total / count / 1000;
         console.log(count);
         if (count < 3) {
             init();
@@ -108,7 +105,7 @@ function drag(e) {
 
         setTranslate(currentX, currentY, dragItem);
 
-        if (Math.abs(currentX)> 150 && currentX*direction>0) {
+        if (Math.abs(currentX) > 150 && currentX * direction > 0) {
             bar.style.backgroundColor = "#60C8EB";
         }
         else {
