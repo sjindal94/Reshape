@@ -205,6 +205,29 @@ if (!('webkitSpeechRecognition' in window)) {
     if (final_transcript || interim_transcript) {
       showButtons('inline-block');
     }
+    chrome.tabs.query({active:true}, function (result) {
+    chrome.tabs.executeScript(result[0].id, {
+        code: `
+        var dispatchMouseEvent = function(target, var_args) {
+            var e = document.createEvent("MouseEvents");
+            // If you need clientX, clientY, etc., you can call
+            // initMouseEvent instead of initEvent
+          e.initEvent.apply(e, Array.prototype.slice.call(arguments, 1));
+          target.dispatchEvent(e);
+        };
+
+        for (const a of document.querySelectorAll("a")) {
+            if (a.textContent.includes("${final_transcript}")) {
+                a.style.fontSize = '30px';
+                console.log(a);
+                dispatchMouseEvent(a, 'click', true, true);
+            }
+        }
+        `
+    });
+
+    });
+
   };
 }
 function upgrade() {

@@ -12,5 +12,5 @@
     "page": "options.html",
     "open_in_tab": false
   },
- "permissions": ["activeTab", "storage","<all_urls>","tabs", "fullscreen", "audioCapture"]
+ "permissions": ["activeTab", "storage","<all_urls>","tabs"]
 }
