@@ -98,7 +98,8 @@ if (!('webkitSpeechRecognition' in window)) {
         chrome.tabs.query({active: true}, function (result) {
             chrome.tabs.executeScript(result[0].id, {
                 code: `
-                    console.log('sd');
+                    
+                    var flag = false;
                     var dispatchMouseEvent = function(target, var_args) {
                         var e = document.createEvent("MouseEvents");
                         // If you need clientX, clientY, etc., you can call
@@ -106,9 +107,7 @@ if (!('webkitSpeechRecognition' in window)) {
                       e.initEvent.apply(e, Array.prototype.slice.call(arguments, 1));
                       target.dispatchEvent(e);
                     };
-            
                     for (const a of document.querySelectorAll("a")) {
-                        
                         let tokens = '${tokens}';
                         if (tokens.indexOf(',') == -1) {
                             tokens = [tokens]
@@ -116,28 +115,25 @@ if (!('webkitSpeechRecognition' in window)) {
                         else {
                             tokens = tokens.split(',')
                         }
-                        tokens.every(function(my_t) {
+                        tokens.forEach(my_t => {
                             my_t = my_t.toLowerCase();
-                            console.log(my_t);
+                            if(my_t.search("click") != -1){
+                                console.log('click');
+                                flag=true;
+                            }
                             if (a.textContent.toLowerCase().includes(my_t)){
                                 console.log(a);
-                                if(my_t.search("click") != -1){
-                                    console.log('click');
-                                    dispatchMouseEvent(a, 'click', true, true);
-                                    return;
-                                }
-                                else{
-                                    console.log('enlarge');
-                                    var nodes = a.childNodes;
-                                    for(var i=0; i<nodes.length; i++) {
-                                        if (nodes[i].nodeName.toLowerCase() == 'div') {
-                                             nodes[i].style.fontSize = '30px';
-                                             nodes[i].style.color = 'red';
-                                        }
+                                if(flag) dispatchMouseEvent(a, 'click', true, true);
+                                console.log('enlarge');
+                                var nodes = a.childNodes;
+                                for(var i=0; i<nodes.length; i++) {
+                                    if (nodes[i].nodeName.toLowerCase() == 'div') {
+                                         nodes[i].style.fontSize = '30px';
+                                         nodes[i].style.color = 'red';
                                     }
-                                    a.style.fontSize = '30px';
-                                    a.style.color = 'red';
                                 }
+                                a.style.fontSize = '30px';
+                                a.style.color = 'red';
                             }
                         });
                     }`
