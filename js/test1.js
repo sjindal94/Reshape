@@ -16,8 +16,12 @@ let d3 = document.getElementById('d3');
 let iterations = 0;
 
 circles.forEach((c) => {
-    circleDomElements.push(document.getElementById(`c${c}`))
+    circleDomElements.push(document.getElementById(`c${c}`));
     svgDomElements.push(document.getElementById(`s${c}`))
+});
+
+chrome.storage.sync.set({"test1": []}, function () {
+    console.log('Settings saved');
 });
 
 circleDomElements.forEach((c, i) => {
@@ -46,7 +50,7 @@ circleDomElements.forEach((c, i) => {
                 }
                 else {
                     console.log('Final average times:', avgTimes);
-                    chrome.storage.sync.set({"lzoom":avgTimes}, function() {
+                    chrome.storage.sync.set({"test1": avgTimes}, function () {
                         console.log('Settings saved');
                     });
                     window.location.href = "../games/test2.html";

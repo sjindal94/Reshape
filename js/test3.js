@@ -25,6 +25,11 @@ container.addEventListener("touchmove", drag, false);
 container.addEventListener("mousedown", dragStart, false);
 container.addEventListener("mouseup", dragEnd, false);
 container.addEventListener("mousemove", drag, false);
+
+chrome.storage.sync.set({"test3": []}, function () {
+    console.log('Average times saved');
+});
+
 init(direction);
 
 function init(n) {
@@ -72,10 +77,10 @@ function dragEnd(e) {
         }
         else {
             console.log(count);
-            chrome.storage.sync.set({"test3_results": average_times}, function () {
+            chrome.storage.sync.set({"test3": average_times}, function () {
                 console.log('Average times saved');
             });
-            window.location.href = '../speech.html';
+            window.location.href = 'results.html';
         }
     }
 

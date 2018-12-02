@@ -4,6 +4,7 @@ let start;
 let delta;
 let count = 0;
 let zoomLevel = 100;
+let times = [];
 
 setNum();
 
@@ -20,6 +21,11 @@ d3.selectAll("#myDropdown")
         return d
     })
     .on("click", handleClick);
+
+chrome.storage.sync.set({"test2": []}, function () {
+    console.log('Settings saved');
+});
+
 
 function show() {
     document.getElementById("myDropdown").classList.toggle("show");
@@ -68,11 +74,16 @@ function handleClick(d) {
             }
         });
 
+        chrome.storage.sync.set({"test2": times}, function () {
+            console.log('Settings saved');
+        });
+
         window.location.href = "../games/test3.html"
     }
     else if (d === correctNum) {
         count++;
         delta = Date.now() - start;
+        times.push(delta);
         document.getElementById("display").innerHTML = "" + delta / 1000 + " seconds have elapsed.";
         //PUT IN DATA STORAGE HERE!!!!!!
         setNum();
