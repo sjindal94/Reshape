@@ -112,3 +112,8 @@ circleDomElements.forEach((c, i) => {
     });
 
 });
+
+let skipBtn = document.getElementById('skip');
+skipBtn.addEventListener("click", () => {
+    window.location.href = 'test2.html';
+});

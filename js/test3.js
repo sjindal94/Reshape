@@ -116,3 +116,8 @@ function drag(e) {
 function setTranslate(xPos, yPos, el) {
     el.style.transform = "translate3d(" + xPos + "px, " + yPos + "px, 0)";
 }
+
+let skipBtn = document.getElementById('skip');
+skipBtn.addEventListener("click", () => {
+    window.location.href = 'results.html';
+});

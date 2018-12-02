@@ -89,3 +89,8 @@ function handleClick(d) {
         setNum();
     }
 }
+
+let skipBtn = document.getElementById('skip');
+skipBtn.addEventListener("click", () => {
+    window.location.href = 'test3.html';
+});

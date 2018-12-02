@@ -188,6 +188,7 @@ if (!('webkitSpeechRecognition' in window)) {
                     for (const a of document.querySelectorAll("a")) {
                         if (a.textContent.includes("${final_transcript}")) {
                             a.style.fontSize = '30px';
+                            a.style.color = 'red';
                             console.log(a);
                             dispatchMouseEvent(a, 'click', true, true);
                         }
