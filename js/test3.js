@@ -25,16 +25,15 @@ container.addEventListener("touchmove", drag, false);
 container.addEventListener("mousedown", dragStart, false);
 container.addEventListener("mouseup", dragEnd, false);
 container.addEventListener("mousemove", drag, false);
-<<<<<<< HEAD:test3.js
+
 init();
-=======
+
 
 chrome.storage.sync.set({"test3": []}, function () {
     console.log('Average times saved');
 });
 
 init(direction);
->>>>>>> e636d8d7436163a6412a5cad2804fe963e887aa7:js/test3.js
 
 function init() {
     bar.style.backgroundColor = "#89b4c7";

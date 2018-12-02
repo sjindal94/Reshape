@@ -29,5 +29,5 @@ chrome.storage.sync.get({"test3": []}, (items) => {
 
 let btn = document.getElementById('goToSpeech');
 btn.addEventListener("click", () => {
-    window.location.href = '../speech.html';
+    window.location.href = '../voiceInstructions.html';
 });
