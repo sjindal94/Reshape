@@ -19,3 +19,8 @@ Using these features, we created a voice assistant which will handle simple comm
 * Click Load Unpacked Button, and upload the repo
 * Once thats done, you will find an R icon on the top-left as a plugin.
 * The plugin is now ready to use!
+
+## Sample Commands
+
+* "click <a clickable element on the webpage>"
+* "search <searchable text>"
