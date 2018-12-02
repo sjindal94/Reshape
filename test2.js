@@ -1,24 +1,9 @@
-/*
-var distances = [5,10,15,20];
-var svgWidth = 500,svgHeight = 300,radius=10;
-var svg = d3.select('svg')
-    .attr("width", svgWidth)
-    .attr("height",svgHeight);
-var origin = svg.selectAll('circle')
-    .data(distances)
-    .enter()
-    .append("circle")
-    .attr("cy",svgHeight/2)
-    .attr("cx",function(d){return (svgWidth-d)/2-radius})
-    .attr("r",radius)
-  //  .on("mouseover",handleMouseOver)
-    //.on("mouseout",handleMouseOut);
-*/
 let options = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 let correctNum = 1;
 let start;
 let delta;
 let count = 0;
+var zoomLevel =100;
 
 setNum();
 
@@ -121,6 +106,20 @@ updateCountry();
 select_dialect.selectedIndex = 6;
 showInfo('info_start');
 
+function magnify(){
+        
+        console.log(zoomLevel);
+        if(zoomLevel==100){
+            zoomLevel=150;
+        }
+        else{
+            zoomLevel=100;
+        }
+        chrome.tabs.executeScript({
+                    code: 'document.body.style.zoom = "'+zoomLevel+'%";'
+        });
+        
+}
 function updateCountry() {
   for (var i = select_dialect.options.length - 1; i >= 0; i--) {
     select_dialect.remove(i);
@@ -281,6 +280,10 @@ function handleClick(d) {
         count++;
         delta = Date.now() - start;
         document.getElementById("display").innerHTML = "" + delta / 1000 + " seconds have elapsed.";
+        //PUT IN DATA STORAGE HERE!!!!!!
+        if(count==3){
+          window.location.href = "test3.html"
+        }
         setNum();
     }
 }

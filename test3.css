@@ -1,0 +1,35 @@
+#container {
+      width: 600px;
+      height:300px;
+      background-color: #333;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      border-radius: 7px;
+      touch-action: none;
+      z-index:-1;
+    }
+    #item {
+      width: 30px;
+      height: 30px;
+      background-color: #89b4c7;
+    
+      border-radius: 50%;
+      touch-action: none;
+      user-select: none;
+      z-index: 2;
+
+    }
+    #item:active {
+      background-color: #60C8EB;
+    }
+    #item:hover {
+      cursor: pointer;
+      border: 10 px solid #737474;
+    }
+    #bar{
+      width:10px;
+      height:250px;
+      background-color: #89b4c7;
+    }
