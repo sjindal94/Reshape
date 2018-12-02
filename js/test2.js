@@ -56,24 +56,7 @@ function getRandomInt(min, max) {
 }
 
 function handleClick(d) {
-    let dummyzoom;
-
     if (count === 3) {
-        chrome.storage.sync.get({
-            "lzoom": 0
-        }, function (items) {
-            console.log(items.lzoom.toString());
-        });
-
-        dummyzoom = 150;
-        chrome.tabs.query({active: true}, function (result) {
-            for (i = 0; i < result.length; i++) {
-                chrome.tabs.executeScript(result[i].id, {
-                    code: 'document.body.style.zoom = "' + dummyzoom + '%";'
-                });
-            }
-        });
-
         chrome.storage.sync.set({"test2": times}, function () {
             console.log('Settings saved');
         });
