@@ -42,7 +42,7 @@ circleDomElements.forEach((c, i) => {
                 times = [];
                 iterations += 1;
 
-                if (iterations < 5) {
+                if (iterations < 3) {
                     [d1, d2, d3].forEach((d) => {
                         d.style.width = `${d.offsetWidth * 1.3}px`;
                         d.style.height = `${d.offsetHeight * 1.3}px`;
@@ -61,7 +61,7 @@ circleDomElements.forEach((c, i) => {
             startTime = (new Date).getTime();
         }
 
-        if (iterations < 3) {
+        if (iterations < 2) {
             circleDomElements.map((c1, j) => {
                 if (c1 === c) {
                     c1.style.fill = 'red'
@@ -79,7 +79,7 @@ circleDomElements.forEach((c, i) => {
         }
         else {
             circleDomElements.map((c1, j) => {
-                if (iterations === 3) {
+                if (iterations === 2) {
                     c1.setAttribute("cx", `25px`);
                     c1.setAttribute("cy", `25px`);
                     c1.setAttribute("r", `20px`);
